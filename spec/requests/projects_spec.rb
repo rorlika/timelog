@@ -6,7 +6,7 @@ RSpec.describe 'Project API', type: :request do
 
   describe 'Post project/create' do
     context 'when valid request' do
-      before { post '/project/create', params: valid_attributes, headers: valid_headers }
+      before { post '/api/v1/project/create', params: valid_attributes, headers: valid_headers }
 
       it 'create a new project' do
         expect(response).to have_http_status(200)
@@ -18,7 +18,7 @@ RSpec.describe 'Project API', type: :request do
     end
 
     context 'when invalid request' do
-      before { post '/project/create', params: {}, headers: valid_headers }
+      before { post '/api/v1/project/create', params: {}, headers: valid_headers }
 
       it 'does not create a new project' do
         expect(response.body).to include("Validation failed: Name can't be blank")
@@ -26,7 +26,7 @@ RSpec.describe 'Project API', type: :request do
     end
 
     context 'when missing token' do
-      before { post '/project/create', params: valid_attributes, headers: valid_headers.except(:Authorization) }
+      before { post '/api/v1/project/create', params: valid_attributes, headers: valid_headers.except(:Authorization) }
 
       it 'returns failure message' do
         expect(response.body).to include('Missing token')
@@ -40,7 +40,7 @@ RSpec.describe 'Project API', type: :request do
     context 'when valid request' do
       before do
         log
-        get "/reports?project_id=#{project.id}", headers: valid_headers
+        get "/api/v1/project/report?project_id=#{project.id}", headers: valid_headers
       end
 
       it 'returns reports' do
@@ -49,7 +49,7 @@ RSpec.describe 'Project API', type: :request do
     end
 
     context 'when invalid request' do
-      before { get "/reports?project_id=100", headers: valid_headers}
+      before { get "/api/v1/project/report?project_id=100", headers: valid_headers}
 
       it 'retruns failure message' do
         expect(response.body).to include("Couldn't find Project")
@@ -57,7 +57,7 @@ RSpec.describe 'Project API', type: :request do
     end
 
     context 'when user do not have logs' do
-      before { get "/reports?project_id=#{project.id}", headers: valid_headers }
+      before { get "/api/v1/project/report?project_id=#{project.id}", headers: valid_headers }
 
       it 'returns failure message' do
         expect(response.body).to include('You do not have logs to generate reports')

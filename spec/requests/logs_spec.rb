@@ -8,7 +8,7 @@ RSpec.describe 'Log API', type: :request do
   describe 'Post log/create' do
     context 'when valid request' do
       before do
-        post '/log/create', params: valid_attributes.merge(project_id: project.id).to_json, headers: valid_headers
+        post '/api/v1/log/create', params: valid_attributes.merge(project_id: project.id).to_json, headers: valid_headers
       end
 
       it 'create a new log' do
@@ -21,7 +21,7 @@ RSpec.describe 'Log API', type: :request do
     end
 
     context 'when invalid request' do
-      before { post '/log/create', params: {}, headers: valid_headers }
+      before { post '/api/v1/log/create', params: {}, headers: valid_headers }
 
       it 'does not create a new log' do
         expect(response.body).to include("Validation failed:")
@@ -29,7 +29,7 @@ RSpec.describe 'Log API', type: :request do
     end
 
     context 'when missing token' do
-      before { post '/log/create', params: valid_attributes.to_json, headers: valid_headers.except(:Authorization) }
+      before { post '/api/v1/log/create', params: valid_attributes.to_json, headers: valid_headers.except(:Authorization) }
 
       it 'returns failure message' do
         expect(response.body).to include('Missing token')

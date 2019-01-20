@@ -7,7 +7,7 @@ RSpec.describe 'Users API', type: :request do
   # User signup test suite
   describe 'Post /signup' do
     context 'when valid request' do
-      before { post '/signup', params: valid_attributes, headers: headers }
+      before { post '/api/v1/signup', params: valid_attributes, headers: headers }
 
       it 'creaes a new user' do
         expect(response).to have_http_status(200)
@@ -23,7 +23,7 @@ RSpec.describe 'Users API', type: :request do
     end
 
     context 'when invalid request' do
-      before { post '/signup', params: {}, headers: headers }
+      before { post '/api/v1/signup', params: {}, headers: headers }
 
       it 'does not create a new user' do
         expect(response).to have_http_status(422)

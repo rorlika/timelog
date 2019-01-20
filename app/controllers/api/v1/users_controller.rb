@@ -1,0 +1,20 @@
+module Api
+  module V1
+    class UsersController < ApplicationController
+      skip_before_action :authorize_request, only: :create
+
+      def create
+        user = User.create!(user_params)
+        access_token = AuthenticateUser.new(user.email, user.password).call
+        response = { message: Message.account_created, access_token: access_token }
+        render json: response
+      end
+
+      private
+
+      def user_params
+        params.permit(:name, :email, :password, :password_confirmation)
+      end
+    end
+  end
+end

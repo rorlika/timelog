@@ -19,7 +19,12 @@ gem 'puma', '~> 3.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+# Use jwt authentication
 gem 'jwt'
+
+# Use swagger to generate api doc
+gem 'rswag'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
