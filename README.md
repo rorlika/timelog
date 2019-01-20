@@ -44,6 +44,10 @@ gem install bundler
  rails s
 ```
 
+### generate api docs
+```
+rake rswag:specs:swaggerize
+```
 ### Test app
 ```
 # get access_token
