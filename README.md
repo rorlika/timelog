@@ -48,6 +48,13 @@ gem install bundler
 ```
 rake rswag:specs:swaggerize
 ```
+### Demo
+```
+user: testuser@test.com
+pass: 12345
+
+project_id: 1
+```
 ### Test app
 ```
 # get access_token
