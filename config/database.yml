@@ -18,3 +18,4 @@ test:
 production:
   <<: *default
   database: timelog_production
+  host: localhost
