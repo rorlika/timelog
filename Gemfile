@@ -23,9 +23,15 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'jwt'
 
 # Use swagger to generate api doc
-gem 'rswag'
+gem 'rswag-api'
+gem 'rswag-ui'
 
+group :test do
+  gem 'rspec-rails'
+  gem 'rswag-specs'
+end
 
+gem 'rspec-core', '~> 3.4'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -35,7 +41,6 @@ gem 'rswag'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-  gem 'rspec-rails', '~> 3.5'
   gem 'factory_bot_rails', '~> 4.0'
   gem 'shoulda-matchers', '~> 3.1'
   gem 'database_cleaner'
