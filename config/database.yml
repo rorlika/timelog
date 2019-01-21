@@ -1,17 +1,20 @@
-development:
+default: &default
   adapter: postgresql
   encoding: unicode
-  database: timelog_development
-  host: localhost
   pool: 5
   username: postgres
   password: Test.?
 
+development:
+  <<: *default
+  database: timelog_development
+  host: localhost
+
 test:
-  adapter: postgresql
-  encoding: unicode
+  <<: *default
   database: timelog_test
   host: localhost
-  pool: 5
-  username: postgres
-  password: Test.?
+
+production:
+  <<: *default
+  database: timelog_production
