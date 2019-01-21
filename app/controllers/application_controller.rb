@@ -3,7 +3,12 @@ class ApplicationController < ActionController::API
 
   # called before every action on controllers
   before_action :authorize_request
+  skip_before_action :authorize_request, only: :home
   attr_reader :current_user
+
+  def home
+    redirect_to '/api-docs'
+  end
 
   private
 
